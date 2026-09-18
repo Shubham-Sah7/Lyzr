@@ -8,6 +8,7 @@ import Screen4 from "./screens/Screen4"
 import EvaluationView from "./components/EvaluationView"
 import { AgentsDirectoryView } from "./components/AgentsDirectoryView"
 import { CreateModal } from "./components/CreateModal"
+import CaseStudyView from "./components/CaseStudyView"
 import {
   Layout,
   Folder,
@@ -17,6 +18,7 @@ import {
   Search,
   Bell,
   Moon,
+  FileText,
 } from "lucide-react"
 
 const screens = [
@@ -25,6 +27,7 @@ const screens = [
   { id: 3, label: "Copilot Chat", icon: MessageSquare },
   { id: 4, label: "Live Run & Sandbox", icon: Play },
   { id: 5, label: "Benchmark Evaluate", icon: Gauge },
+  { id: 7, label: "Case Study", icon: FileText },
 ]
 
 class ErrorBoundary extends React.Component<{ children: React.ReactNode }, {
@@ -82,10 +85,11 @@ export default function App() {
       if (hash === "sandbox" || hash === "run" || hash === "4") return 4
       if (hash === "evaluate" || hash === "eval" || hash === "5") return 5
       if (hash === "directory" || hash === "agents" || hash === "6") return 6
+      if (hash === "case-study" || hash === "casestudy" || hash === "study" || hash === "7") return 7
       const saved = localStorage.getItem("lyzx_active_tab")
       if (saved) {
         const num = parseInt(saved, 10)
-        if (num >= 1 && num <= 6) return num
+        if (num >= 1 && num <= 7) return num
       }
     } catch (_) {}
     return 1 // Default to Studio — Main Reference
@@ -103,6 +107,7 @@ export default function App() {
         4: "sandbox",
         5: "evaluate",
         6: "directory",
+        7: "case-study",
       }
       window.location.hash = slugs[id] || String(id)
     } catch (_) {}
@@ -129,6 +134,10 @@ export default function App() {
         directory: 6,
         agents: 6,
         "6": 6,
+        "case-study": 7,
+        casestudy: 7,
+        study: 7,
+        "7": 7,
       }
       if (map[hash]) {
         setActiveState(map[hash])
@@ -265,6 +274,11 @@ export default function App() {
               onOpenCreateModal={() => setIsCreateModalOpen(true)}
               onSelectAgent={() => setActive(2)}
               onOpenInventStudio={() => setActive(3)}
+            />
+          )}
+          {active === 7 && (
+            <CaseStudyView
+              onNavigateScreen={(id) => setActive(id)}
             />
           )}
         </div>
