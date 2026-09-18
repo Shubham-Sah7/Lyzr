@@ -686,9 +686,11 @@ export default function RelevanceStudioView({
                       className="shrink-0 select-none mt-0.5"
                     />
                   ) : (
-                    <div className="w-6 h-6 rounded-full bg-[#be4c3f] text-white flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5 shadow-xs ring-2 ring-white select-none">
-                      SS
-                    </div>
+                    <img
+                      src="/user-avatar.jpg"
+                      alt="User"
+                      className="w-6 h-6 rounded-full object-cover shrink-0 mt-0.5 shadow-xs ring-2 ring-white select-none"
+                    />
                   )}
 
                   <div

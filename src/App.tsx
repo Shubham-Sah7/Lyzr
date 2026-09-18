@@ -212,10 +212,14 @@ export default function App() {
 
           <div
             onClick={() => setActive(6)}
-            className="w-7 h-7 rounded-full bg-[#be4c3f] hover:bg-[#a83e32] text-white flex items-center justify-center text-xs font-bold cursor-pointer shadow-2xs transition-colors ml-1"
+            className="w-7 h-7 rounded-full overflow-hidden cursor-pointer shadow-2xs hover:ring-2 hover:ring-[#be4c3f] transition-all ml-1 ring-1 ring-slate-200"
             title="User Profile & All Agents"
           >
-            SS
+            <img
+              src="/user-avatar.jpg"
+              alt="User Profile"
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
       </div>

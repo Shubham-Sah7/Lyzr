@@ -159,9 +159,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
           }`}
         >
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold text-xs ring-2 ring-white shadow-2xs">
-              S
-            </div>
+            <img
+              src="/user-avatar.jpg"
+              alt="Sagar"
+              className="w-7 h-7 rounded-full object-cover ring-2 ring-white shadow-2xs shrink-0"
+            />
             {!collapsed && (
               <div className="overflow-hidden">
                 <p className="text-xs font-semibold text-slate-800 truncate">

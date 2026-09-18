@@ -160,9 +160,11 @@ export const AgentTesterView: React.FC<AgentTesterViewProps> = ({
                     className="shrink-0 select-none mt-0.5"
                   />
                 ) : (
-                  <div className="w-8 h-8 rounded-full bg-[#be4c3f] text-white flex items-center justify-center font-bold text-xs shadow-xs ring-2 ring-white shrink-0 select-none">
-                    SS
-                  </div>
+                  <img
+                    src="/user-avatar.jpg"
+                    alt="User"
+                    className="w-8 h-8 rounded-full object-cover shadow-xs ring-2 ring-white shrink-0 select-none"
+                  />
                 )}
 
                 <div

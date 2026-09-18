@@ -569,9 +569,11 @@ export default function Screen4({ onNavigateTab, onHomeClick }: Screen4Props) {
                     >
                       {/* Message Avatar */}
                       {msg.sender === "user" ? (
-                        <div className="w-8 h-8 rounded-full bg-[#be4c3f] text-white font-bold text-xs flex items-center justify-center shrink-0 shadow-xs ring-2 ring-white select-none sticky top-2">
-                          SS
-                        </div>
+                        <img
+                          src="/user-avatar.jpg"
+                          alt="User"
+                          className="w-8 h-8 rounded-full object-cover shrink-0 shadow-xs ring-2 ring-white select-none sticky top-2"
+                        />
                       ) : (
                         <AiOrb
                           size="md"
