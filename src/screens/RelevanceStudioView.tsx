@@ -567,66 +567,6 @@ export default function RelevanceStudioView({
                 <p className="text-xs text-slate-600">
                   Try sending a test task to this agent...
                 </p>
-
-                {/* Add guide link */}
-                <div className="pt-0.5">
-                  <button className="text-xs text-slate-800 font-semibold hover:underline block">
-                    Add a guide for how to use this agent
-                  </button>
-                  <p className="text-[11px] text-slate-600 mt-0.5">
-                    Shown to users before they start a task — helps them
-                    understand what this agent does and how to use it.
-                  </p>
-                </div>
-              </div>
-
-              {/* Notice Box: Test runs will use credits */}
-              <div className="p-3.5 rounded-lg border border-slate-200 bg-white text-xs space-y-0.5">
-                <p className="font-semibold text-slate-800">
-                  Test runs will use credits
-                </p>
-                <p className="text-slate-600 text-[11px] leading-relaxed">
-                  Credit usage for individual test runs won't be visible at the
-                  agent level as runs performed here are not stored. You can
-                  view overall agent credit usage in Plan & Billing.{" "}
-                  <button
-                    onClick={() => setIsUpgradeModalOpen(true)}
-                    className="text-slate-900 font-semibold hover:underline"
-                  >
-                    Learn more.
-                  </button>
-                </p>
-              </div>
-
-              {/* Credit Alert Card */}
-              <div className="p-3.5 rounded-lg border border-slate-200 bg-white flex items-center justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
-                    <Monitor className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-slate-900 text-xs">
-                      {testCredits === 0
-                        ? "You've run out of credits"
-                        : `${testCredits} credits remaining`}
-                    </h4>
-                    <p className="text-[11px] text-slate-600">
-                      {testCredits === 0
-                        ? "0 / 0 credits remaining"
-                        : "Ready for execution tasks"}
-                    </p>
-                  </div>
-                </div>
-
-                <button
-                  onClick={() => {
-                    setTestCredits(2500)
-                    showToast("Refilled 2,500 test execution credits")
-                  }}
-                  className="px-3.5 py-1.5 rounded-md bg-[#be4c3f] hover:bg-[#a83e32] text-white text-xs font-medium transition-colors shadow-2xs"
-                >
-                  {testCredits === 0 ? "Upgrade" : "Refill"}
-                </button>
               </div>
 
               {/* Describe task interactive input card */}
