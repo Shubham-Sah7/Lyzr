@@ -20,13 +20,11 @@ import {
   FileText,
   FileSpreadsheet,
   Settings,
-  BookOpen,
   PieChart,
   Monitor,
   Paperclip,
   Clock,
   AlertCircle,
-  Lightbulb,
   X,
   Check,
   Plus,
@@ -81,7 +79,6 @@ export default function StudioMainView({
   // Modals & Banners
   const [isShareOpen, setIsShareOpen] = useState(false)
   const [isDeployOpen, setIsDeployOpen] = useState(false)
-  const [isProTipVisible, setIsProTipVisible] = useState(true)
   const [toastMessage, setToastMessage] = useState<string | null>(null)
 
   // Right Configuration Panel States
@@ -89,22 +86,12 @@ export default function StudioMainView({
   const [modelTemperature, setModelTemperature] = useState(0.7)
   const [modelMaxTokens, setModelMaxTokens] = useState(4096)
   const [modelThinking, setModelThinking] = useState(true)
-  const [schedules, setSchedules] = useState([
-    {
-      id: "sch1",
-      label: "Hourly Health Check",
-      cron: "0 * * * *",
-      active: true,
-    },
-  ])
-  const [triggers, setTriggers] = useState([
-    {
-      id: "trig1",
-      label: "Email Webhook",
-      endpoint: "POST /webhook/email",
-      active: true,
-    },
-  ])
+  const [schedules, setSchedules] = useState<
+    Array<{ id: string; label: string; cron: string; active: boolean }>
+  >([])
+  const [triggers, setTriggers] = useState<
+    Array<{ id: string; label: string; endpoint: string; active: boolean }>
+  >([])
 
   const [isMemoryEnabled, setIsMemoryEnabled] = useState(true)
   const [isDataQueryEnabled, setIsDataQueryEnabled] = useState(true)
@@ -938,60 +925,6 @@ export default function StudioMainView({
               <span>→</span>
             </button>
           </div>
-
-          {/* How can I help? Card */}
-          <div className="p-3 rounded-xl border border-slate-200 bg-white space-y-2 shadow-2xs">
-            <div className="flex items-center gap-2 text-sm font-bold text-slate-900">
-              <BookOpen className="w-4 h-4 text-[#be4c3f]" />
-              <span>How can I help?</span>
-            </div>
-
-            <div className="space-y-1">
-              {[
-                "Add test coverage",
-                "Add production monitoring",
-                "Get detailed recommendations",
-              ].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => {
-                    if (onOpenCopilot) onOpenCopilot()
-                    else showToast(`Copilot suggestion: ${item}`)
-                  }}
-                  className="w-full flex items-center justify-between p-1.5 rounded-lg hover:bg-slate-50 text-xs text-slate-700 hover:text-slate-900 transition-colors text-left group"
-                >
-                  <div className="flex items-center gap-1.5 truncate">
-                    <span className="text-[10px] text-slate-500 font-bold">
-                      ◇
-                    </span>
-                    <span className="truncate">{item}</span>
-                  </div>
-                  <ChevronRight className="w-3 h-3 text-slate-500 group-hover:text-slate-800 shrink-0 ml-1" />
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Pro Tip Card */}
-          {isProTipVisible && (
-            <div className="p-3 rounded-xl border border-slate-200 bg-slate-50 relative space-y-1.5">
-              <button
-                onClick={() => setIsProTipVisible(false)}
-                className="absolute top-2.5 right-2.5 text-slate-500 hover:text-slate-700 p-0.5 rounded transition-colors"
-                title="Dismiss"
-              >
-                <X className="w-3.5 h-3.5" />
-              </button>
-              <div className="flex items-center gap-1.5 text-sm font-bold text-slate-900">
-                <Lightbulb className="w-4 h-4 text-amber-500" />
-                <span>Pro tip</span>
-              </div>
-              <p className="text-xs text-slate-600 leading-relaxed pr-3 font-normal">
-                A well-defined goal and clear instructions help your agent
-                perform better.
-              </p>
-            </div>
-          )}
         </div>
       </div>
 

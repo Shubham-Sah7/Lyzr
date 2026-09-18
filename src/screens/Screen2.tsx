@@ -219,14 +219,9 @@ export default function Screen2({
     { id: "s1", name: "Data Extraction & Enrichment", enabled: true },
     { id: "s2", name: "Executive Report Synthesizer", enabled: true },
   ])
-  const [schedulesList, setSchedulesList] = useState([
-    {
-      id: "sch1",
-      label: "Hourly Health Check",
-      cron: "0 * * * *",
-      active: true,
-    },
-  ])
+  const [schedulesList, setSchedulesList] = useState<
+    Array<{ id: string; label: string; cron: string; active: boolean }>
+  >([])
   const [isMemoryEnabled, setIsMemoryEnabled] = useState(true)
   const [isDataQueryEnabled, setIsDataQueryEnabled] = useState(true)
   const [isResponsibleAIEnabled, setIsResponsibleAIEnabled] = useState(true)
