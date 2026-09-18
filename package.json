@@ -15,8 +15,8 @@
     "react-dom": "^19.0.0",
     "recharts": "^3.10.1"
   },
+  "packageManager": "pnpm@10.34.3",
   "devDependencies": {
-    "@rolldown/binding-darwin-arm64": "^1.2.9",
     "@tailwindcss/vite": "^4.0.0",
     "@types/node": "^22.20.3",
     "@types/react": "^19.3.0",
