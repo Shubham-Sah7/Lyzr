@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import Header from "../components/Header"
 import InventChatPanel from "../components/InventChatPanel"
-import AiOrb from "../components/AiOrb"
 import {
   Wrench,
   Database,
@@ -408,9 +407,11 @@ export default function Screen3({ onNavigateTab, onHomeClick }: Screen3Props) {
               <div className="p-5 space-y-4">
                 {/* 3-Step Workflow Assistant Banner */}
                 <div className="p-4 rounded-xl border border-slate-200/90 bg-white shadow-2xs flex items-center gap-4 overflow-hidden">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-rose-50/80 to-sky-50/80 border border-slate-200/80 flex items-center justify-center shrink-0 shadow-2xs p-1">
-                    <AiOrb size="lg" animate={true} />
-                  </div>
+                  <img
+                    src="/robot-workflow-banner.png"
+                    alt="Define, Connect, Test"
+                    className="h-16 w-auto object-contain shrink-0 drop-shadow-xs"
+                  />
                   <div className="space-y-0.5 min-w-0">
                     <div className="flex items-center gap-1.5 flex-wrap">
                       <span className="text-[10px] font-bold uppercase tracking-wider text-[#be4c3f]">

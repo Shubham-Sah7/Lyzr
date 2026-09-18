@@ -270,9 +270,11 @@ export const InventChatPanel: React.FC<InventChatPanelProps> = ({
       <div className="flex-1 overflow-y-auto p-4 space-y-5 text-xs">
         {/* Welcome Mascot Workflow Card */}
         <div className="rounded-2xl border border-slate-200/90 bg-white p-3.5 flex items-center gap-3.5 shadow-2xs select-none">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-rose-50/80 to-sky-50/80 border border-slate-200/80 flex items-center justify-center shrink-0 shadow-2xs p-1">
-            <AiOrb size="lg" animate={true} />
-          </div>
+          <img
+            src="/robot-workflow-banner.png"
+            alt="Define, Connect, Test with Invent Copilot"
+            className="h-16 w-auto object-contain shrink-0 drop-shadow-xs"
+          />
           <div className="space-y-0.5 min-w-0">
             <div className="flex items-center gap-1.5 flex-wrap">
               <span className="text-xs font-bold text-slate-900">
