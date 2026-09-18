@@ -269,6 +269,30 @@ export const InventChatPanel: React.FC<InventChatPanelProps> = ({
 
       {/* Messages Scroll Area */}
       <div className="flex-1 overflow-y-auto p-4 space-y-5 text-xs">
+        {/* Welcome Mascot Workflow Card */}
+        <div className="rounded-2xl border border-slate-200/90 bg-white p-3.5 flex items-center gap-3.5 shadow-2xs select-none">
+          <img
+            src="/robot-workflow-banner.png"
+            alt="Define, Connect, Test with Invent Copilot"
+            className="h-16 w-auto object-contain shrink-0 drop-shadow-xs"
+          />
+          <div className="space-y-0.5 min-w-0">
+            <div className="flex items-center gap-1.5 flex-wrap">
+              <span className="text-xs font-bold text-slate-900">
+                Invent Copilot Guide
+              </span>
+              <span className="px-1.5 py-0.2 rounded-full text-[9px] font-bold bg-[#be4c3f] text-white">
+                Define • Connect • Test
+              </span>
+            </div>
+            <p className="text-[11px] text-slate-600 leading-snug">
+              I can help you <strong>Define</strong> system prompts,{" "}
+              <strong>Connect</strong> API tools & datasets, and{" "}
+              <strong>Test</strong> runtime assertions.
+            </p>
+          </div>
+        </div>
+
         {messages.map((msg) => (
           <div
             key={msg.id}

@@ -564,6 +564,61 @@ export default function Screen2({
         {/* ================= CENTER DYNAMIC WORKSPACE (SPACIOUS & UNCLUTTERED) ================= */}
         <div className="flex flex-1 flex-col overflow-y-auto py-7 px-8 min-w-0 bg-white">
           <div className="w-full max-w-4xl mx-auto space-y-6">
+            {/* 3-Step Workflow Banner (Define • Connect • Test) */}
+            <div className="rounded-2xl border border-slate-200/90 bg-white p-4 shadow-2xs flex flex-col md:flex-row items-center justify-between gap-5 overflow-hidden group">
+              <div className="flex items-center gap-5 min-w-0">
+                <img
+                  src="/robot-workflow-banner.png"
+                  alt="Define, Connect, Test Agent Workflow"
+                  className="h-20 w-auto object-contain shrink-0 drop-shadow-xs"
+                />
+                <div className="space-y-1.5 min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="font-bold text-slate-900 text-sm">
+                      Agent Development Pipeline
+                    </span>
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#be4c3f] text-white">
+                      Interactive Guide
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Follow the 3-step loop: define system instructions, connect
+                    APIs & knowledge tools, and run live sandbox tests.
+                  </p>
+                  <div className="flex items-center gap-2 pt-0.5 flex-wrap text-xs">
+                    <button
+                      onClick={() => setActiveTab("prompt")}
+                      className={`px-3 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
+                        activeTab === "prompt"
+                          ? "bg-slate-900 text-white shadow-xs"
+                          : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                      }`}
+                    >
+                      <span>1. Define Prompt</span>
+                    </button>
+                    <span className="text-slate-400">→</span>
+                    <button
+                      onClick={() => setActiveTab("tools")}
+                      className={`px-3 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
+                        activeTab === "tools" || activeTab === "knowledge"
+                          ? "bg-slate-900 text-white shadow-xs"
+                          : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                      }`}
+                    >
+                      <span>2. Connect Tools</span>
+                    </button>
+                    <span className="text-slate-400">→</span>
+                    <button
+                      onClick={() => onNavigateTab && onNavigateTab("run")}
+                      className="px-3 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 bg-[#be4c3f] hover:bg-[#a83e32] text-white transition-all cursor-pointer shadow-xs"
+                    >
+                      <span>3. Test Sandbox ▶</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* 1. PROMPT VIEW */}
             {activeTab === "prompt" && (
               <div className="space-y-6">

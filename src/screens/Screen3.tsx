@@ -405,6 +405,35 @@ export default function Screen3({ onNavigateTab, onHomeClick }: Screen3Props) {
 
               {/* Dynamic Context Body */}
               <div className="p-5 space-y-4">
+                {/* 3-Step Workflow Assistant Banner */}
+                <div className="p-4 rounded-xl border border-slate-200/90 bg-white shadow-2xs flex items-center gap-4 overflow-hidden">
+                  <img
+                    src="/robot-workflow-banner.png"
+                    alt="Define, Connect, Test"
+                    className="h-16 w-auto object-contain shrink-0 drop-shadow-xs"
+                  />
+                  <div className="space-y-0.5 min-w-0">
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#be4c3f]">
+                        Autonomous Pipeline
+                      </span>
+                      <span className="text-[10px] font-semibold text-slate-400">
+                        •
+                      </span>
+                      <span className="text-[10px] font-medium text-slate-500">
+                        Define • Connect • Test
+                      </span>
+                    </div>
+                    <h4 className="text-xs font-bold text-slate-900">
+                      Collaborative Agent Development
+                    </h4>
+                    <p className="text-[11px] text-slate-600 leading-snug">
+                      Edit instructions on the left or prompt Copilot on the
+                      right to synthesize production guardrails.
+                    </p>
+                  </div>
+                </div>
+
                 {/* PROMPT CONTEXT */}
                 {activeTab === "prompt" && (
                   <div className="space-y-4">
