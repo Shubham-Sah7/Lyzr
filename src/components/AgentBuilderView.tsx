@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { SlackIcon, SheetsIcon, GmailIcon } from "./ToolIcons"
 import {
   Bot,
   Wand2,
@@ -538,14 +539,22 @@ export const AgentBuilderView: React.FC<AgentBuilderViewProps> = ({
               </div>
 
               {/* Card 4: Type "/" to add tools */}
-              <div className="bg-[#FAFBFD] rounded-2xl border border-slate-200/70 overflow-hidden flex flex-col justify-between hover:shadow-md transition-all group w-full">
-                <div className="bg-[#EBF3FF] p-4 flex items-center justify-center h-36 relative w-full">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-2xl bg-emerald-100 shadow-sm flex items-center justify-center text-xl transform -rotate-6">
-                      💬
+              <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden flex flex-col justify-between hover:shadow-md transition-all group w-full">
+                <div className="bg-[#EBF3FF] flex items-center justify-center h-36 relative w-full overflow-hidden select-none">
+                  {/* Decorative background cards */}
+                  <div className="absolute w-20 h-24 bg-[#D5F5DE] border border-[#BCECCB] rounded-2xl rotate-[-14deg] translate-x-[-38px] shadow-xs" />
+                  <div className="absolute w-20 h-24 bg-[#FEF6E6] border border-[#FDEAC4] rounded-2xl rotate-[16deg] translate-x-[42px] shadow-xs" />
+
+                  {/* Floating Tool Cards */}
+                  <div className="relative flex items-center justify-center gap-2.5 z-10">
+                    <div className="w-13 h-15 bg-white rounded-xl shadow-sm border border-slate-200/90 flex flex-col items-center justify-center p-2 rotate-[-5deg] group-hover:rotate-[-2deg] transition-transform">
+                      <SlackIcon className="w-7 h-7 shrink-0" />
                     </div>
-                    <div className="w-12 h-12 rounded-2xl bg-white shadow-md flex items-center justify-center text-xl transform rotate-3 z-10 border border-slate-100">
-                      ❖
+                    <div className="w-13 h-15 bg-white rounded-xl shadow-md border border-slate-200/90 flex flex-col items-center justify-center p-2 rotate-[6deg] group-hover:rotate-[3deg] transition-transform">
+                      <SheetsIcon className="w-7 h-7 shrink-0" />
+                    </div>
+                    <div className="w-10 h-11 bg-white rounded-lg shadow-xs border border-slate-200/80 flex items-center justify-center p-1.5 rotate-[16deg] translate-x-[-2px] translate-y-[-4px]">
+                      <GmailIcon className="w-4 h-4 shrink-0" />
                     </div>
                   </div>
                 </div>
