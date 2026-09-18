@@ -34,8 +34,6 @@ import {
   SlidersHorizontal,
   FileCode,
   Database,
-  Brain,
-  ShieldCheck,
   Zap,
   Calendar,
 } from "lucide-react"
@@ -1201,18 +1199,13 @@ export default function StudioMainView({
             <div className="space-y-2">
               {/* Memory Card */}
               <div className="flex items-center justify-between p-2.5 rounded-xl border border-slate-200 bg-white hover:border-slate-300 transition-all shadow-2xs">
-                <div className="flex items-center gap-2.5 min-w-0">
-                  <div className="w-7 h-7 rounded-lg bg-[#be4c3f] text-white flex items-center justify-center shrink-0 shadow-2xs">
-                    <Brain className="w-3.5 h-3.5 text-white" />
-                  </div>
-                  <div className="min-w-0">
-                    <h4 className="text-sm font-bold text-slate-900 leading-tight">
-                      Memory
-                    </h4>
-                    <p className="text-xs text-slate-500 leading-tight truncate mt-0.5">
-                      Persistent context across sessions
-                    </p>
-                  </div>
+                <div className="min-w-0 pr-2">
+                  <h4 className="text-sm font-bold text-slate-900 leading-tight">
+                    Memory
+                  </h4>
+                  <p className="text-xs text-slate-500 leading-tight truncate mt-0.5">
+                    Persistent context across sessions
+                  </p>
                 </div>
                 <button
                   type="button"
@@ -1240,18 +1233,13 @@ export default function StudioMainView({
 
               {/* Data Query Card */}
               <div className="flex items-center justify-between p-2.5 rounded-xl border border-slate-200 bg-white hover:border-slate-300 transition-all shadow-2xs">
-                <div className="flex items-center gap-2.5 min-w-0">
-                  <div className="w-7 h-7 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shrink-0">
-                    <Database className="w-3.5 h-3.5 text-blue-600" />
-                  </div>
-                  <div className="min-w-0">
-                    <h4 className="text-sm font-bold text-slate-900 leading-tight">
-                      Data Query
-                    </h4>
-                    <p className="text-xs text-slate-500 leading-tight truncate mt-0.5">
-                      Direct SQL & semantic vector retrieval
-                    </p>
-                  </div>
+                <div className="min-w-0 pr-2">
+                  <h4 className="text-sm font-bold text-slate-900 leading-tight">
+                    Data Query
+                  </h4>
+                  <p className="text-xs text-slate-500 leading-tight truncate mt-0.5">
+                    Direct SQL & semantic vector retrieval
+                  </p>
                 </div>
                 <button
                   type="button"
@@ -1279,18 +1267,13 @@ export default function StudioMainView({
 
               {/* Responsible AI Card */}
               <div className="flex items-center justify-between p-2.5 rounded-xl border border-slate-200 bg-white hover:border-slate-300 transition-all shadow-2xs">
-                <div className="flex items-center gap-2.5 min-w-0">
-                  <div className="w-7 h-7 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 shrink-0">
-                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                  </div>
-                  <div className="min-w-0">
-                    <h4 className="text-sm font-bold text-slate-900 leading-tight">
-                      Responsible AI
-                    </h4>
-                    <p className="text-xs text-slate-500 leading-tight truncate mt-0.5">
-                      Guardrails, toxicity filters & PII masking
-                    </p>
-                  </div>
+                <div className="min-w-0 pr-2">
+                  <h4 className="text-sm font-bold text-slate-900 leading-tight">
+                    Responsible AI
+                  </h4>
+                  <p className="text-xs text-slate-500 leading-tight truncate mt-0.5">
+                    Guardrails, toxicity filters & PII masking
+                  </p>
                 </div>
                 <button
                   type="button"
