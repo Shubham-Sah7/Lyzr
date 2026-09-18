@@ -15,6 +15,7 @@ import {
   CheckCircle2,
 } from "lucide-react"
 import FormattedChatMessage from "./FormattedChatMessage"
+import AiOrb from "./AiOrb"
 
 export interface ChatMessage {
   id: string
@@ -228,9 +229,7 @@ export const InventChatPanel: React.FC<InventChatPanelProps> = ({
       {/* Header matching reference */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200 bg-white shrink-0">
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-[#be4c3f] text-white flex items-center justify-center shrink-0 shadow-xs">
-            <Bot className="w-4 h-4" />
-          </div>
+          <AiOrb size="sm" animate={true} />
           <div>
             <div className="flex items-center gap-1.5">
               <span className="font-bold text-slate-900 text-xs">
@@ -271,11 +270,9 @@ export const InventChatPanel: React.FC<InventChatPanelProps> = ({
       <div className="flex-1 overflow-y-auto p-4 space-y-5 text-xs">
         {/* Welcome Mascot Workflow Card */}
         <div className="rounded-2xl border border-slate-200/90 bg-white p-3.5 flex items-center gap-3.5 shadow-2xs select-none">
-          <img
-            src="/robot-workflow-banner.png"
-            alt="Define, Connect, Test with Invent Copilot"
-            className="h-16 w-auto object-contain shrink-0 drop-shadow-xs"
-          />
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-rose-50/80 to-sky-50/80 border border-slate-200/80 flex items-center justify-center shrink-0 shadow-2xs p-1">
+            <AiOrb size="lg" animate={true} />
+          </div>
           <div className="space-y-0.5 min-w-0">
             <div className="flex items-center gap-1.5 flex-wrap">
               <span className="text-xs font-bold text-slate-900">
@@ -302,11 +299,11 @@ export const InventChatPanel: React.FC<InventChatPanelProps> = ({
           >
             {/* Avatar */}
             {msg.sender === "agent" ? (
-              <div className="w-7 h-7 rounded-full bg-slate-900 text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs ring-2 ring-slate-100 select-none sticky top-2">
-                <Bot className="w-3.5 h-3.5 text-white" />
+              <div className="shrink-0 mt-0.5 sticky top-2">
+                <AiOrb size="sm" animate={true} />
               </div>
             ) : (
-              <div className="w-7 h-7 rounded-full bg-[#be4c3f] text-white flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5 shadow-xs ring-2 ring-white select-none sticky top-2">
+              <div className="w-6 h-6 rounded-full bg-[#be4c3f] text-white flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5 shadow-xs ring-2 ring-white select-none sticky top-2">
                 SS
               </div>
             )}
@@ -425,8 +422,8 @@ export const InventChatPanel: React.FC<InventChatPanelProps> = ({
         {/* Streaming Thinking State */}
         {isGenerating && (
           <div className="flex gap-3 items-start animate-fadeIn">
-            <div className="w-7 h-7 rounded-full bg-slate-900 text-white flex items-center justify-center shrink-0 shadow-xs ring-2 ring-slate-100">
-              <Bot className="w-3.5 h-3.5 text-white animate-pulse" />
+            <div className="shrink-0 mt-0.5">
+              <AiOrb size="sm" animate={true} isThinking={true} />
             </div>
             <div className="bg-white px-3.5 py-2.5 rounded-2xl rounded-tl-xs border border-slate-200 shadow-xs flex items-center gap-2.5">
               <div className="w-3.5 h-3.5 border-2 border-[#be4c3f] border-t-transparent rounded-full animate-spin shrink-0" />

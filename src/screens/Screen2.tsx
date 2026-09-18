@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import Header from "../components/Header"
 import TemplateCards from "../components/TemplateCards"
 import InventChatPanel from "../components/InventChatPanel"
+import AiOrb from "../components/AiOrb"
 import { renderToolIcon } from "../components/ToolIcons"
 import {
   Bot,
@@ -568,11 +569,9 @@ export default function Screen2({
             {/* 3-Step Workflow Banner (Define • Connect • Test) */}
             <div className="rounded-2xl border border-slate-200/90 bg-white p-4 shadow-2xs flex flex-col md:flex-row items-center justify-between gap-5 overflow-hidden group">
               <div className="flex items-center gap-5 min-w-0">
-                <img
-                  src="/robot-workflow-banner.png"
-                  alt="Define, Connect, Test Agent Workflow"
-                  className="h-20 w-auto object-contain shrink-0 drop-shadow-xs"
-                />
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-rose-50/80 to-sky-50/80 border border-slate-200/80 flex items-center justify-center shrink-0 shadow-2xs p-1.5">
+                  <AiOrb size="xl" animate={true} />
+                </div>
                 <div className="space-y-1.5 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="font-bold text-slate-900 text-sm">

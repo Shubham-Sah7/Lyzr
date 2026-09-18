@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { SlackIcon, SheetsIcon, GmailIcon } from "./ToolIcons"
+import AiOrb from "./AiOrb"
 import {
   Bot,
   Wand2,
@@ -776,8 +777,8 @@ export const AgentBuilderView: React.FC<AgentBuilderViewProps> = ({
 
               {/* Greeting graphic */}
               <div className="text-center py-6 space-y-3">
-                <div className="w-12 h-12 rounded-xl bg-slate-900 text-white flex items-center justify-center mx-auto shadow-sm">
-                  <Bot className="w-6 h-6 text-white" />
+                <div className="flex items-center justify-center mx-auto">
+                  <AiOrb size="xl" animate={true} />
                 </div>
                 <div className="inline-block bg-slate-100 rounded-full px-4 py-2 text-xs font-semibold text-slate-800">
                   How can I help?

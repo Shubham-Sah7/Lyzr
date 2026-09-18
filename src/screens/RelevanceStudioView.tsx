@@ -18,6 +18,7 @@ import {
   Wand2,
 } from "lucide-react"
 import FormattedChatMessage from "../components/FormattedChatMessage"
+import AiOrb from "../components/AiOrb"
 
 const a = "/assets"
 
@@ -646,9 +647,7 @@ export default function RelevanceStudioView({
             <div className="flex-1 overflow-y-auto px-4 py-2 space-y-3">
               {/* How can I help? Speech bubble with Bot icon */}
               <div className="flex items-start gap-2.5 mt-2">
-                <div className="w-7 h-7 rounded-md bg-slate-900 text-white flex items-center justify-center text-xs font-bold shrink-0">
-                  <Bot className="w-3.5 h-3.5 text-white" />
-                </div>
+                <AiOrb size="sm" animate={true} className="shrink-0" />
                 <div className="px-3 py-2 rounded-lg border border-slate-200 bg-white text-xs font-semibold text-slate-800">
                   How can I help?
                 </div>
@@ -681,9 +680,11 @@ export default function RelevanceStudioView({
                 >
                   {/* Avatar */}
                   {msg.sender === "copilot" ? (
-                    <div className="w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs ring-2 ring-slate-100 select-none">
-                      <Bot className="w-3.5 h-3.5 text-white" />
-                    </div>
+                    <AiOrb
+                      size="sm"
+                      animate={true}
+                      className="shrink-0 select-none mt-0.5"
+                    />
                   ) : (
                     <div className="w-6 h-6 rounded-full bg-[#be4c3f] text-white flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5 shadow-xs ring-2 ring-white select-none">
                       SS
@@ -737,9 +738,12 @@ export default function RelevanceStudioView({
 
               {isCopilotThinking && (
                 <div className="flex gap-2.5 items-center pl-1 text-xs text-slate-600 font-medium animate-fadeIn">
-                  <div className="w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center shrink-0 shadow-xs">
-                    <Bot className="w-3.5 h-3.5 text-white animate-pulse" />
-                  </div>
+                  <AiOrb
+                    size="sm"
+                    animate={true}
+                    isThinking={true}
+                    className="shrink-0"
+                  />
                   <div className="bg-white border border-slate-200 px-3 py-1.5 rounded-xl text-[11px] text-slate-600 flex items-center gap-2 shadow-xs">
                     <div className="w-2.5 h-2.5 border-2 border-[#be4c3f] border-t-transparent rounded-full animate-spin shrink-0" />
                     <span>Synthesizing response...</span>

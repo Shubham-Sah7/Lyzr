@@ -42,6 +42,7 @@ import DeployModal from "../components/DeployModal"
 import ModelSelectionModal from "../components/ModelSelectionModal"
 import FormattedChatMessage from "../components/FormattedChatMessage"
 import ExecutionTracesCard from "../components/ExecutionTracesCard"
+import AiOrb from "../components/AiOrb"
 
 interface Screen4Props {
   onNavigateTab?: (tab: "build" | "run" | "evaluate") => void
@@ -572,9 +573,11 @@ export default function Screen4({ onNavigateTab, onHomeClick }: Screen4Props) {
                           SS
                         </div>
                       ) : (
-                        <div className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center shrink-0 shadow-xs ring-2 ring-slate-100 select-none sticky top-2">
-                          <Bot className="w-4 h-4 text-white" />
-                        </div>
+                        <AiOrb
+                          size="md"
+                          animate={true}
+                          className="shrink-0 select-none sticky top-2"
+                        />
                       )}
 
                       {/* Message Body Column */}
@@ -678,9 +681,12 @@ export default function Screen4({ onNavigateTab, onHomeClick }: Screen4Props) {
 
                   {isExecuting && (
                     <div className="flex gap-3.5 items-start animate-fadeIn">
-                      <div className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center shrink-0 shadow-xs ring-2 ring-slate-100">
-                        <Bot className="w-4 h-4 text-white animate-pulse" />
-                      </div>
+                      <AiOrb
+                        size="md"
+                        animate={true}
+                        isThinking={true}
+                        className="shrink-0"
+                      />
                       <div className="bg-white border border-slate-200 px-4 py-3 rounded-2xl rounded-tl-xs text-xs text-slate-700 flex items-center gap-3 shadow-xs">
                         <div className="w-4 h-4 border-2 border-[#be4c3f] border-t-transparent rounded-full animate-spin shrink-0" />
                         <div className="flex flex-col gap-0.5">

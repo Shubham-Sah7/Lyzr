@@ -11,6 +11,7 @@ import {
 } from "lucide-react"
 import FormattedChatMessage from "./FormattedChatMessage"
 import ExecutionTracesCard, { TraceStep } from "./ExecutionTracesCard"
+import AiOrb from "./AiOrb"
 
 interface Message {
   id: string
@@ -153,9 +154,11 @@ export const AgentTesterView: React.FC<AgentTesterViewProps> = ({
               >
                 {/* Avatar */}
                 {msg.sender === "agent" ? (
-                  <div className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-xs shadow-xs ring-2 ring-slate-100 shrink-0 select-none">
-                    <Bot className="w-4 h-4" />
-                  </div>
+                  <AiOrb
+                    size="md"
+                    animate={true}
+                    className="shrink-0 select-none mt-0.5"
+                  />
                 ) : (
                   <div className="w-8 h-8 rounded-full bg-[#be4c3f] text-white flex items-center justify-center font-bold text-xs shadow-xs ring-2 ring-white shrink-0 select-none">
                     SS
@@ -201,10 +204,13 @@ export const AgentTesterView: React.FC<AgentTesterViewProps> = ({
             ))}
 
             {isExecuting && (
-              <div className="flex items-center gap-3 text-xs text-slate-600 animate-pulse">
-                <div className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-xs shadow-xs">
-                  <Bot className="w-4 h-4" />
-                </div>
+              <div className="flex items-center gap-3 text-xs text-slate-600 animate-fadeIn">
+                <AiOrb
+                  size="md"
+                  animate={true}
+                  isThinking={true}
+                  className="shrink-0"
+                />
                 <div className="p-3 bg-white border border-slate-200 rounded-2xl rounded-tl-xs font-mono text-[11px] shadow-xs">
                   Agent is thinking & fetching web context...
                 </div>
