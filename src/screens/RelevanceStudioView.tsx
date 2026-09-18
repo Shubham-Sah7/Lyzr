@@ -15,7 +15,9 @@ import {
   HelpCircle,
   FileText,
   Bot,
+  Wand2,
 } from "lucide-react"
+import FormattedChatMessage from "../components/FormattedChatMessage"
 
 const a = "/assets"
 
@@ -733,48 +735,83 @@ export default function RelevanceStudioView({
               {copilotMessages.map((msg) => (
                 <div
                   key={msg.id}
-                  className={`flex gap-2 ${
+                  className={`flex gap-2.5 items-start ${
                     msg.sender === "user" ? "flex-row-reverse" : "flex-row"
                   }`}
                 >
+                  {/* Avatar */}
+                  {msg.sender === "copilot" ? (
+                    <div className="w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs ring-2 ring-slate-100 select-none">
+                      <Bot className="w-3.5 h-3.5 text-white" />
+                    </div>
+                  ) : (
+                    <div className="w-6 h-6 rounded-full bg-[#be4c3f] text-white flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5 shadow-xs ring-2 ring-white select-none">
+                      SS
+                    </div>
+                  )}
+
                   <div
-                    className={`p-3 rounded-lg text-xs leading-relaxed max-w-[85%] ${
-                      msg.sender === "user"
-                        ? "bg-slate-900 text-white"
-                        : "bg-slate-50 text-slate-800 border border-slate-200"
+                    className={`flex flex-col gap-1 max-w-[85%] ${
+                      msg.sender === "user" ? "items-end" : "items-start"
                     }`}
                   >
-                    <p className="whitespace-pre-wrap">{msg.text}</p>
-                    {msg.sender === "copilot" && (
-                      <button
-                        onClick={() => {
-                          setGoalText(
-                            (prev) =>
-                              `${prev}\n\n- Verified strict schema checks\n- Validated external source references`,
-                          )
-                          showToast("Applied recommendations to Goal")
-                        }}
-                        className="mt-2 text-[11px] font-semibold text-slate-900 bg-white border border-slate-200 px-2 py-1 rounded hover:bg-slate-100"
-                      >
-                        Apply to Agent Instructions
-                      </button>
-                    )}
+                    <div className="flex items-center gap-1.5 px-1 text-[10px] text-slate-500 font-medium">
+                      <span className="font-semibold text-slate-700">
+                        {msg.sender === "user" ? "You" : "Invent Copilot"}
+                      </span>
+                      <span>•</span>
+                      <span>{msg.time}</span>
+                    </div>
+
+                    <div
+                      className={`p-3 rounded-2xl text-xs leading-relaxed ${
+                        msg.sender === "user"
+                          ? "bg-slate-900 text-white rounded-tr-xs shadow-xs font-normal whitespace-pre-wrap"
+                          : "bg-white text-slate-800 border border-slate-200/90 rounded-tl-xs shadow-xs space-y-2 w-full"
+                      }`}
+                    >
+                      {msg.sender === "user" ? (
+                        msg.text
+                      ) : (
+                        <>
+                          <FormattedChatMessage text={msg.text} />
+                          <button
+                            onClick={() => {
+                              setGoalText(
+                                (prev) =>
+                                  `${prev}\n\n- Verified strict schema checks\n- Validated external source references`,
+                              )
+                              showToast("Applied recommendations to Goal")
+                            }}
+                            className="mt-2 text-[11px] font-semibold text-white bg-[#be4c3f] hover:bg-[#a83e32] px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors shadow-xs cursor-pointer"
+                          >
+                            <Wand2 className="w-3 h-3" />
+                            <span>Apply to Agent Instructions</span>
+                          </button>
+                        </>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}
 
               {isCopilotThinking && (
-                <div className="flex gap-2 items-center pl-9 text-xs text-slate-600 font-medium">
-                  <div className="w-1.5 h-1.5 rounded-full bg-slate-900 animate-pulse" />
-                  <span>Synthesizing response...</span>
+                <div className="flex gap-2.5 items-center pl-1 text-xs text-slate-600 font-medium animate-fadeIn">
+                  <div className="w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center shrink-0 shadow-xs">
+                    <Bot className="w-3.5 h-3.5 text-white animate-pulse" />
+                  </div>
+                  <div className="bg-white border border-slate-200 px-3 py-1.5 rounded-xl text-[11px] text-slate-600 flex items-center gap-2 shadow-xs">
+                    <div className="w-2.5 h-2.5 border-2 border-[#be4c3f] border-t-transparent rounded-full animate-spin shrink-0" />
+                    <span>Synthesizing response...</span>
+                  </div>
                 </div>
               )}
               <div ref={copilotEndRef} />
             </div>
 
             {/* Bottom input area matching reference */}
-            <div className="p-3.5 border-t border-slate-200 bg-white space-y-2">
-              <div className="border border-slate-200 focus-within:border-slate-400 rounded-md flex items-center px-3 py-1.5 bg-white">
+            <div className="p-3 border-t border-slate-200 bg-white space-y-2">
+              <div className="border border-slate-200 focus-within:border-[#be4c3f] focus-within:ring-2 focus-within:ring-[#be4c3f]/15 rounded-xl flex items-center px-3 py-2 bg-white shadow-xs transition-all">
                 <input
                   type="text"
                   value={copilotInput}
@@ -783,11 +820,12 @@ export default function RelevanceStudioView({
                     e.key === "Enter" && !e.shiftKey && handleSendCopilot()
                   }
                   placeholder="Create with Invent..."
-                  className="flex-1 text-xs text-slate-800 placeholder:text-slate-500 outline-none bg-transparent"
+                  className="flex-1 text-xs text-slate-800 placeholder:text-slate-400 outline-none bg-transparent"
                 />
                 <button
                   onClick={() => handleSendCopilot()}
-                  className="p-1 text-slate-500 hover:text-slate-800"
+                  disabled={!copilotInput.trim()}
+                  className="p-1 text-slate-500 hover:text-[#be4c3f] disabled:text-slate-300 disabled:cursor-not-allowed transition-colors cursor-pointer"
                 >
                   <Send className="w-3.5 h-3.5" />
                 </button>
@@ -795,7 +833,7 @@ export default function RelevanceStudioView({
 
               <div className="flex items-center justify-between text-[11px] text-slate-600 px-1">
                 <span>Allow GPT 5.6 Luna</span>
-                <button className="text-slate-800 font-semibold hover:underline">
+                <button className="text-[#be4c3f] font-semibold hover:underline cursor-pointer">
                   Connect
                 </button>
               </div>

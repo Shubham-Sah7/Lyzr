@@ -14,6 +14,7 @@ import {
   FileCode,
   CheckCircle2,
 } from "lucide-react"
+import FormattedChatMessage from "./FormattedChatMessage"
 
 export interface ChatMessage {
   id: string
@@ -227,15 +228,15 @@ export const InventChatPanel: React.FC<InventChatPanelProps> = ({
       {/* Header matching reference */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200 bg-white shrink-0">
         <div className="flex items-center gap-2.5">
-          <div className="w-6 h-6 rounded-md bg-[#fdf2f0] border border-[#f5d0cb] flex items-center justify-center text-[#be4c3f]">
-            <Bot className="w-3.5 h-3.5" />
+          <div className="w-7 h-7 rounded-lg bg-[#be4c3f] text-white flex items-center justify-center shrink-0 shadow-xs">
+            <Bot className="w-4 h-4" />
           </div>
           <div>
             <div className="flex items-center gap-1.5">
               <span className="font-bold text-slate-900 text-xs">
                 Invent Copilot
               </span>
-              <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-[#fdf2f0] text-[#be4c3f] border border-[#f5d0cb]">
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200">
                 GPT 5.6 Luna
               </span>
             </div>
@@ -248,16 +249,16 @@ export const InventChatPanel: React.FC<InventChatPanelProps> = ({
         <div className="flex items-center gap-2">
           <button
             onClick={handleClearHistory}
-            className="flex items-center gap-1 px-2 py-1 text-[11px] font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-md transition-colors"
+            className="flex items-center gap-1 px-2 py-1 text-[11px] font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-md transition-colors cursor-pointer"
             title="Reset conversation"
           >
             <RotateCcw className="w-3 h-3" />
-            <span>History</span>
+            <span>Reset</span>
           </button>
           {onClose && (
             <button
               onClick={onClose}
-              className="p-1 rounded-md text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors"
+              className="p-1 rounded-md text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors cursor-pointer"
               title="Close panel"
             >
               <X className="w-3.5 h-3.5" />
@@ -267,44 +268,56 @@ export const InventChatPanel: React.FC<InventChatPanelProps> = ({
       </div>
 
       {/* Messages Scroll Area */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 text-xs">
+      <div className="flex-1 overflow-y-auto p-4 space-y-5 text-xs">
         {messages.map((msg) => (
           <div
             key={msg.id}
-            className={`flex gap-2.5 ${
+            className={`flex gap-3 items-start ${
               msg.sender === "user" ? "flex-row-reverse" : "flex-row"
-            }`}
+            } group`}
           >
             {/* Avatar */}
             {msg.sender === "agent" ? (
-              <div className="w-6 h-6 rounded-md bg-[#fdf2f0] border border-[#f5d0cb] text-[#be4c3f] flex items-center justify-center shrink-0 mt-0.5">
-                <Bot className="w-3.5 h-3.5" />
+              <div className="w-7 h-7 rounded-full bg-slate-900 text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs ring-2 ring-slate-100 select-none sticky top-2">
+                <Bot className="w-3.5 h-3.5 text-white" />
               </div>
             ) : (
-              <div className="w-6 h-6 rounded-md bg-[#be4c3f] text-white flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5 shadow-2xs">
+              <div className="w-7 h-7 rounded-full bg-[#be4c3f] text-white flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5 shadow-xs ring-2 ring-white select-none sticky top-2">
                 SS
               </div>
             )}
 
             {/* Bubble & Contents */}
             <div
-              className={`flex flex-col gap-1.5 max-w-[85%] ${
+              className={`flex flex-col gap-1 max-w-[85%] ${
                 msg.sender === "user" ? "items-end" : "items-start"
               }`}
             >
+              <div className="flex items-center gap-1.5 px-1 text-[10px] text-slate-500 font-medium">
+                <span className="font-semibold text-slate-700">
+                  {msg.sender === "user" ? "You" : "Invent Copilot"}
+                </span>
+                <span>•</span>
+                <span>{msg.time}</span>
+              </div>
+
               <div
-                className={`px-3 py-2 rounded-xl leading-relaxed whitespace-pre-wrap text-xs ${
+                className={`p-3.5 rounded-2xl text-xs leading-relaxed ${
                   msg.sender === "user"
-                    ? "bg-[#fdf2f0] text-slate-900 border border-[#f5d0cb] font-medium shadow-2xs"
-                    : "bg-slate-50 text-slate-800 border border-slate-200/90 shadow-2xs"
+                    ? "bg-slate-900 text-white rounded-tr-xs shadow-xs font-normal whitespace-pre-wrap"
+                    : "bg-white text-slate-800 border border-slate-200/90 rounded-tl-xs shadow-xs space-y-2.5 w-full"
                 }`}
               >
-                {msg.text}
+                {msg.sender === "user" ? (
+                  msg.text
+                ) : (
+                  <FormattedChatMessage text={msg.text} />
+                )}
               </div>
 
               {/* Code / Prompt snippet block if available */}
               {msg.suggestedPromptSnippet && (
-                <div className="w-full bg-slate-900 rounded-xl overflow-hidden border border-slate-800 shadow-2xs">
+                <div className="w-full bg-slate-900 rounded-xl overflow-hidden border border-slate-800 shadow-2xs mt-1">
                   <div className="flex items-center justify-between px-3 py-1.5 bg-slate-800 border-b border-slate-700 text-xs text-slate-400">
                     <span className="flex items-center gap-1.5 font-mono text-[11px] text-slate-300">
                       <FileCode className="w-3.5 h-3.5 text-[#be4c3f]" />
@@ -315,7 +328,7 @@ export const InventChatPanel: React.FC<InventChatPanelProps> = ({
                         onClick={() =>
                           handleCopy(msg.suggestedPromptSnippet!, msg.id)
                         }
-                        className="flex items-center gap-1 text-[11px] text-slate-300 hover:text-white transition-colors"
+                        className="flex items-center gap-1 text-[11px] text-slate-300 hover:text-white transition-colors cursor-pointer"
                       >
                         {copiedId === msg.id ? (
                           <>
@@ -340,7 +353,7 @@ export const InventChatPanel: React.FC<InventChatPanelProps> = ({
                         onClick={() =>
                           handleApply(msg.suggestedPromptSnippet!, msg.id)
                         }
-                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all shadow-2xs ${
+                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all shadow-2xs cursor-pointer ${
                           appliedId === msg.id
                             ? "bg-emerald-600 text-white"
                             : "bg-[#be4c3f] hover:bg-[#a83e32] text-white"
@@ -363,42 +376,38 @@ export const InventChatPanel: React.FC<InventChatPanelProps> = ({
                 </div>
               )}
 
-              {/* Quick action buttons / suggestions matching reference */}
+              {/* Quick action buttons / suggestions */}
               {msg.quickActions && msg.quickActions.length > 0 && (
                 <div className="flex flex-col gap-1 w-full mt-1">
                   {msg.quickActions.map((action, idx) => (
                     <button
                       key={idx}
                       onClick={() => handleSendMessage(action)}
-                      className="group flex items-center justify-between text-left text-xs px-3 py-1.5 rounded-lg bg-white hover:bg-[#fdf2f0] border border-slate-200 hover:border-[#f5d0cb] text-slate-700 hover:text-[#be4c3f] transition-all shadow-2xs"
+                      className="group flex items-center justify-between text-left text-xs px-3.5 py-2 rounded-xl bg-slate-50 hover:bg-[#fdf2f0] border border-slate-200 hover:border-[#f5d0cb] text-slate-700 hover:text-[#be4c3f] transition-all shadow-2xs font-medium cursor-pointer"
                     >
-                      <span className="flex items-center gap-1.5">
+                      <span className="flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#be4c3f]" />
-                        <span className="font-medium">{action}</span>
+                        <span>{action}</span>
                       </span>
-                      <ArrowRight className="w-3 h-3 text-slate-500 group-hover:text-[#be4c3f] group-hover:translate-x-0.5 transition-all" />
+                      <ArrowRight className="w-3 h-3 text-slate-400 group-hover:text-[#be4c3f] group-hover:translate-x-0.5 transition-all" />
                     </button>
                   ))}
                 </div>
               )}
-
-              <span className="text-[10px] text-slate-500 font-medium px-1">
-                {msg.time}
-              </span>
             </div>
           </div>
         ))}
 
         {/* Streaming Thinking State */}
         {isGenerating && (
-          <div className="flex gap-2.5 items-start">
-            <div className="w-6 h-6 rounded-md bg-[#fdf2f0] border border-[#f5d0cb] text-[#be4c3f] flex items-center justify-center shrink-0">
-              <Bot className="w-3.5 h-3.5 animate-pulse" />
+          <div className="flex gap-3 items-start animate-fadeIn">
+            <div className="w-7 h-7 rounded-full bg-slate-900 text-white flex items-center justify-center shrink-0 shadow-xs ring-2 ring-slate-100">
+              <Bot className="w-3.5 h-3.5 text-white animate-pulse" />
             </div>
-            <div className="bg-slate-50 px-3 py-2 rounded-xl border border-slate-200 flex items-center gap-2">
-              <div className="w-3 h-3 border-2 border-[#be4c3f] border-t-transparent rounded-full animate-spin" />
-              <span className="text-xs text-slate-600 font-medium">
-                Synthesizing suggestions...
+            <div className="bg-white px-3.5 py-2.5 rounded-2xl rounded-tl-xs border border-slate-200 shadow-xs flex items-center gap-2.5">
+              <div className="w-3.5 h-3.5 border-2 border-[#be4c3f] border-t-transparent rounded-full animate-spin shrink-0" />
+              <span className="text-xs text-slate-700 font-medium">
+                Synthesizing agent recommendations...
               </span>
             </div>
           </div>
@@ -406,36 +415,37 @@ export const InventChatPanel: React.FC<InventChatPanelProps> = ({
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input Box Footer matching reference */}
+      {/* Input Box Footer */}
       <div className="p-3 border-t border-slate-200 bg-white shrink-0">
-        <div className="border border-slate-200 focus-within:border-[#be4c3f] focus-within:ring-1 focus-within:ring-[#be4c3f]/20 rounded-xl overflow-hidden transition-all shadow-2xs">
-          <div className="flex items-center px-3 py-2 bg-white">
+        <div className="border border-slate-200 focus-within:border-[#be4c3f] focus-within:ring-2 focus-within:ring-[#be4c3f]/15 rounded-2xl overflow-hidden transition-all shadow-sm bg-white">
+          <div className="flex items-center px-3.5 py-2.5 bg-white">
             <input
               ref={inputRef}
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Create with Invent..."
-              className="flex-1 text-xs text-slate-800 placeholder:text-slate-500 outline-none bg-transparent"
+              placeholder="Ask Invent Copilot or request improvements..."
+              className="flex-1 text-xs text-slate-800 placeholder:text-slate-400 outline-none bg-transparent"
               disabled={isGenerating}
             />
             <button
               onClick={() => handleSendMessage()}
               disabled={!input.trim() || isGenerating}
-              className={`ml-2 w-7 h-7 rounded-lg flex items-center justify-center transition-all ${
+              className={`ml-2 px-3 py-1.5 rounded-xl flex items-center gap-1 text-xs font-semibold transition-all cursor-pointer ${
                 input.trim() && !isGenerating
-                  ? "bg-[#be4c3f] hover:bg-[#a83e32] text-white shadow-2xs"
-                  : "bg-slate-100 text-slate-400 cursor-not-allowed"
+                  ? "bg-[#be4c3f] hover:bg-[#a83e32] text-white shadow-xs"
+                  : "bg-slate-200 text-slate-400 cursor-not-allowed"
               }`}
             >
-              <Send className="w-3.5 h-3.5" />
+              <span>Send</span>
+              <Send className="w-3 h-3" />
             </button>
           </div>
 
-          <div className="flex items-center justify-between px-3 py-1.5 bg-slate-50/80 border-t border-slate-100 text-[11px] text-slate-600 font-medium">
+          <div className="flex items-center justify-between px-3.5 py-1.5 bg-slate-50 border-t border-slate-100 text-[11px] text-slate-600 font-medium">
             <div className="flex items-center gap-1.5 cursor-pointer hover:text-slate-900">
-              <span>Allow</span>
+              <span className="text-slate-500">Connected to</span>
               <span className="font-semibold text-slate-800">GPT 5.6 Luna</span>
               <span className="text-[9px]">▾</span>
             </div>
@@ -445,7 +455,7 @@ export const InventChatPanel: React.FC<InventChatPanelProps> = ({
               }
               className="font-semibold text-[#be4c3f] hover:underline cursor-pointer"
             >
-              Connect
+              Connect Tools
             </button>
           </div>
         </div>

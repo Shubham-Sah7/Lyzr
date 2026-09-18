@@ -29,10 +29,19 @@ import {
   Settings,
   Plus,
   Globe,
+  Bot,
+  Sparkles,
+  ThumbsUp,
+  ThumbsDown,
+  RotateCcw,
+  Terminal,
+  User,
 } from "lucide-react"
 import ShareModal from "../components/ShareModal"
 import DeployModal from "../components/DeployModal"
 import ModelSelectionModal from "../components/ModelSelectionModal"
+import FormattedChatMessage from "../components/FormattedChatMessage"
+import ExecutionTracesCard from "../components/ExecutionTracesCard"
 
 interface Screen4Props {
   onNavigateTab?: (tab: "build" | "run" | "evaluate") => void
@@ -535,12 +544,12 @@ export default function Screen4({ onNavigateTab, onHomeClick }: Screen4Props) {
 
                 {/* Credits & Interactive / Task Runner Toggle */}
                 <div className="flex items-center gap-3">
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-50/50 border border-amber-200/60 text-xs">
-                    <Zap className="w-3.5 h-3.5 text-amber-500 fill-amber-400" />
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-50 border border-amber-200 text-xs">
+                    <Zap className="w-3.5 h-3.5 text-amber-600 fill-amber-500" />
                     <span className="font-bold text-slate-800">
                       2,450 / 2,500
                     </span>
-                    <span className="text-slate-500 font-medium">credits</span>
+                    <span className="text-slate-600 font-medium">credits</span>
                   </div>
 
                   <div className="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200">
@@ -606,193 +615,226 @@ export default function Screen4({ onNavigateTab, onHomeClick }: Screen4Props) {
                     <span>More examples</span>
                   </button>
                 </div>
-              </div>
-
-              {/* CHAT MESSAGES & LIVE STEP TRACES */}
-              <div className="space-y-4 pt-2">
-                {messages.map((msg) => (
-                  <div
-                    key={msg.id}
-                    className={`flex gap-3.5 ${
-                      msg.sender === "user" ? "flex-row-reverse" : "flex-row"
-                    }`}
-                  >
-                    {/* Message Avatar */}
+                {/* CHAT MESSAGES & LIVE STEP TRACES */}
+                <div className="space-y-6 pt-2">
+                  {messages.map((msg) => (
                     <div
-                      className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5 text-xs ${
-                        msg.sender === "user"
-                          ? "bg-slate-900 text-white font-semibold"
-                          : "bg-slate-100 border border-slate-200 text-slate-600"
-                      }`}
+                      key={msg.id}
+                      className={`flex gap-3.5 items-start ${
+                        msg.sender === "user" ? "flex-row-reverse" : "flex-row"
+                      } group`}
                     >
+                      {/* Message Avatar */}
                       {msg.sender === "user" ? (
-                        "U"
+                        <div className="w-8 h-8 rounded-full bg-[#be4c3f] text-white font-bold text-xs flex items-center justify-center shrink-0 shadow-xs ring-2 ring-white select-none sticky top-2">
+                          SS
+                        </div>
                       ) : (
-                        <AgentAvatarIcon className="w-4 h-4 text-slate-600" />
+                        <div className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center shrink-0 shadow-xs ring-2 ring-slate-100 select-none sticky top-2">
+                          <Bot className="w-4 h-4 text-white" />
+                        </div>
+                      )}
+
+                      {/* Message Body Column */}
+                      {msg.sender === "user" ? (
+                        <div className="flex flex-col gap-1 max-w-xl items-end">
+                          <div className="flex items-center gap-1.5 px-1 text-[11px] text-slate-500 font-medium">
+                            <span className="font-semibold text-slate-700">
+                              You
+                            </span>
+                            <span>•</span>
+                            <span>{msg.time}</span>
+                          </div>
+                          <div className="bg-slate-900 text-white px-4 py-3 rounded-2xl rounded-tr-xs text-xs leading-relaxed shadow-xs font-normal whitespace-pre-wrap">
+                            {msg.text}
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="flex flex-col gap-1.5 max-w-2xl items-start flex-1">
+                          <div className="flex items-center gap-2 px-1 text-[11px] text-slate-500 font-medium">
+                            <span className="font-bold text-slate-900">
+                              Sandbox Agent
+                            </span>
+                            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200">
+                              GPT-5.4 Luna
+                            </span>
+                            <span>•</span>
+                            <span>{msg.time}</span>
+                          </div>
+
+                          {/* Agent Bubble Card */}
+                          <div className="w-full bg-white border border-slate-200/90 rounded-2xl rounded-tl-xs p-4.5 shadow-xs text-xs space-y-3.5">
+                            {/* Rich Formatted Output Text */}
+                            <FormattedChatMessage text={msg.text} />
+
+                            {/* Execution Step Traces card */}
+                            {msg.steps && msg.steps.length > 0 && (
+                              <ExecutionTracesCard
+                                steps={msg.steps}
+                                msgId={msg.id}
+                                fullOutputText={msg.text}
+                                defaultExpanded={isTracesExpanded}
+                              />
+                            )}
+
+                            {/* Action Toolbar */}
+                            <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-slate-400">
+                              <div className="flex items-center gap-1">
+                                <button
+                                  onClick={() => handleCopy(msg.text, msg.id)}
+                                  className="flex items-center gap-1.5 text-[11px] text-slate-600 hover:text-slate-900 font-medium px-2 py-1 rounded-md hover:bg-slate-100 transition-colors cursor-pointer"
+                                >
+                                  {copiedId === msg.id ? (
+                                    <>
+                                      <Check className="w-3.5 h-3.5 text-emerald-600" />
+                                      <span className="text-emerald-600 font-semibold">
+                                        Copied output
+                                      </span>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <Copy className="w-3.5 h-3.5 text-slate-500" />
+                                      <span>Copy output</span>
+                                    </>
+                                  )}
+                                </button>
+
+                                <button
+                                  onClick={() => handleSendMessage(msg.text)}
+                                  className="flex items-center gap-1 text-[11px] text-slate-600 hover:text-slate-900 font-medium px-2 py-1 rounded-md hover:bg-slate-100 transition-colors cursor-pointer"
+                                  title="Rerun instruction"
+                                >
+                                  <RotateCw className="w-3 h-3 text-slate-500" />
+                                  <span>Rerun</span>
+                                </button>
+                              </div>
+
+                              <div className="flex items-center gap-1">
+                                <button
+                                  onClick={() =>
+                                    showToast("Thanks for the feedback!")
+                                  }
+                                  className="p-1 hover:text-slate-700 hover:bg-slate-50 rounded transition-colors cursor-pointer"
+                                  title="Helpful response"
+                                >
+                                  <ThumbsUp className="w-3.5 h-3.5" />
+                                </button>
+                                <button
+                                  onClick={() => showToast("Feedback recorded")}
+                                  className="p-1 hover:text-slate-700 hover:bg-slate-50 rounded transition-colors cursor-pointer"
+                                  title="Report issue"
+                                >
+                                  <ThumbsDown className="w-3.5 h-3.5" />
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       )}
                     </div>
+                  ))}
 
-                    <div
-                      className={`flex flex-col gap-1.5 max-w-2xl ${
-                        msg.sender === "user" ? "items-end" : "items-start"
-                      }`}
-                    >
-                      {/* Message Bubble */}
-                      <div
-                        className={`p-4 rounded-xl text-xs leading-relaxed ${
-                          msg.sender === "user"
-                            ? "bg-slate-900 text-white shadow-2xs"
-                            : "bg-[#f8fafc] text-slate-800 border border-slate-200/80 shadow-2xs"
+                  {isExecuting && (
+                    <div className="flex gap-3.5 items-start animate-fadeIn">
+                      <div className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center shrink-0 shadow-xs ring-2 ring-slate-100">
+                        <Bot className="w-4 h-4 text-white animate-pulse" />
+                      </div>
+                      <div className="bg-white border border-slate-200 px-4 py-3 rounded-2xl rounded-tl-xs text-xs text-slate-700 flex items-center gap-3 shadow-xs">
+                        <div className="w-4 h-4 border-2 border-[#be4c3f] border-t-transparent rounded-full animate-spin shrink-0" />
+                        <div className="flex flex-col gap-0.5">
+                          <span className="font-semibold text-slate-900">
+                            Reasoning with GPT-5.4 Luna...
+                          </span>
+                          <span className="text-[11px] text-slate-500">
+                            Evaluating runtime schemas & calling external tools
+                            (Gmail, Sheets, Slack)
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  <div ref={messagesEndRef} />
+                </div>
+              </div>
+
+              {/* BOTTOM PROMPT INPUT BAR */}
+              <div className="pt-4 sticky bottom-0 bg-white/95 backdrop-blur-xs">
+                <div className="border border-slate-200 focus-within:border-[#be4c3f] focus-within:ring-2 focus-within:ring-[#be4c3f]/15 rounded-2xl p-3.5 bg-white shadow-sm transition-all space-y-2.5">
+                  <textarea
+                    value={inputMessage}
+                    onChange={(e) => setInputMessage(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (
+                        (e.key === "Enter" && (e.metaKey || e.ctrlKey)) ||
+                        (e.key === "Enter" && !e.shiftKey)
+                      ) {
+                        e.preventDefault()
+                        handleSendMessage()
+                      }
+                    }}
+                    placeholder="Type a message or instruction to test your agent live... (Enter to send, Shift+Enter for newline)"
+                    className="w-full text-xs text-slate-800 placeholder:text-slate-400 outline-none resize-none bg-transparent min-h-[48px] leading-relaxed"
+                    disabled={isExecuting}
+                  />
+
+                  <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+                    {/* Left tool chips */}
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <button
+                        onClick={() => showToast("Add attachment or dataset")}
+                        className="w-7 h-7 rounded-lg border border-slate-200 hover:bg-slate-50 flex items-center justify-center text-slate-500 hover:text-slate-800 transition-colors shadow-2xs cursor-pointer"
+                        title="Add attachment"
+                      >
+                        <Plus className="w-3.5 h-3.5" />
+                      </button>
+
+                      <button
+                        onClick={() => setIsModelModalOpen(true)}
+                        className="px-2.5 py-1 rounded-lg border border-slate-200 hover:bg-slate-50 text-xs font-semibold text-slate-700 flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                      >
+                        <Wrench className="w-3.5 h-3.5 text-[#be4c3f]" />
+                        <span>Tools (3 active)</span>
+                        <ChevronDown className="w-3 h-3 text-slate-400" />
+                      </button>
+
+                      <button
+                        onClick={() => setIsModelModalOpen(true)}
+                        className="px-2.5 py-1 rounded-lg border border-slate-200 hover:bg-slate-50 text-xs font-semibold text-slate-700 flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                      >
+                        <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+                        <span>GPT-5.4 Luna</span>
+                        <ChevronDown className="w-3 h-3 text-slate-400" />
+                      </button>
+
+                      <button
+                        onClick={handleClearSession}
+                        className="px-2 py-1 rounded-lg hover:bg-slate-100 text-xs font-medium text-slate-500 hover:text-slate-800 transition-colors flex items-center gap-1 cursor-pointer"
+                        title="Reset conversation"
+                      >
+                        <RotateCcw className="w-3.5 h-3.5" />
+                        <span className="hidden sm:inline">Reset</span>
+                      </button>
+                    </div>
+
+                    {/* Right send button & shortcut */}
+                    <div className="flex items-center gap-2.5">
+                      <kbd className="hidden md:inline-flex items-center gap-0.5 px-2 py-0.5 text-[10px] font-mono font-medium text-slate-500 bg-slate-100 border border-slate-200 rounded select-none">
+                        ⌘↵ to run
+                      </kbd>
+
+                      <button
+                        onClick={() => handleSendMessage()}
+                        disabled={!inputMessage.trim() || isExecuting}
+                        className={`px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition-all shadow-xs cursor-pointer ${
+                          inputMessage.trim() && !isExecuting
+                            ? "bg-[#be4c3f] hover:bg-[#a83e32] text-white"
+                            : "bg-slate-200 text-slate-400 cursor-not-allowed"
                         }`}
                       >
-                        <div className="whitespace-pre-wrap">{msg.text}</div>
-
-                        {/* Expandable Execution Step Traces card */}
-                        {msg.steps && msg.steps.length > 0 && (
-                          <div className="mt-3.5 bg-white border border-slate-200 rounded-lg p-3 space-y-2 text-xs shadow-2xs">
-                            <div className="flex items-center justify-between">
-                              <button
-                                onClick={() =>
-                                  setIsTracesExpanded(!isTracesExpanded)
-                                }
-                                className="flex items-center gap-1.5 text-slate-800 font-semibold hover:text-[#be4c3f] transition-colors"
-                              >
-                                <Clock className="w-3.5 h-3.5 text-slate-500" />
-                                <span>Execution Step Traces</span>
-                                {isTracesExpanded ? (
-                                  <ChevronUp className="w-3.5 h-3.5 text-slate-500" />
-                                ) : (
-                                  <ChevronDown className="w-3.5 h-3.5 text-slate-500" />
-                                )}
-                              </button>
-
-                              <button
-                                onClick={() => handleCopy(msg.text, msg.id)}
-                                className="flex items-center gap-1 text-[11px] text-slate-600 hover:text-slate-900 font-medium transition-colors cursor-pointer"
-                              >
-                                {copiedId === msg.id ? (
-                                  <>
-                                    <Check className="w-3 h-3 text-emerald-600" />
-                                    <span className="text-emerald-600 font-medium">
-                                      Copied
-                                    </span>
-                                  </>
-                                ) : (
-                                  <>
-                                    <Copy className="w-3 h-3 text-slate-500" />
-                                    <span>Copy output</span>
-                                  </>
-                                )}
-                              </button>
-                            </div>
-
-                            {isTracesExpanded && (
-                              <div className="space-y-1.5 pt-1 border-t border-slate-100">
-                                {msg.steps.map((st, i) => (
-                                  <div
-                                    key={i}
-                                    className="flex items-center justify-between text-slate-600 py-0.5"
-                                  >
-                                    <span className="flex items-center gap-2">
-                                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
-                                      <span className="font-medium text-slate-800">
-                                        {st.name}
-                                      </span>
-                                    </span>
-                                    <span className="font-mono text-[11px] text-slate-500 font-medium">
-                                      {st.latency}
-                                    </span>
-                                  </div>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-                        )}
-                      </div>
-
-                      <span className="text-[10px] text-slate-500 font-medium px-1">
-                        {msg.time}
-                      </span>
+                        <span>Run</span>
+                        <Play className="w-3 h-3 fill-current" />
+                      </button>
                     </div>
-                  </div>
-                ))}
-
-                {isExecuting && (
-                  <div className="flex gap-3.5 items-start">
-                    <div className="w-8 h-8 rounded-lg bg-slate-100 border border-slate-200 text-slate-600 flex items-center justify-center shrink-0">
-                      <AgentAvatarIcon className="w-4 h-4 text-slate-600 animate-pulse" />
-                    </div>
-                    <div className="bg-white border border-slate-200 px-3.5 py-2.5 rounded-xl text-xs text-slate-600 flex items-center gap-2.5 shadow-2xs">
-                      <div className="w-3.5 h-3.5 border-2 border-[#be4c3f] border-t-transparent rounded-full animate-spin" />
-                      <span className="font-medium text-slate-700">
-                        Executing agent reasoning & tools...
-                      </span>
-                    </div>
-                  </div>
-                )}
-                <div ref={messagesEndRef} />
-              </div>
-            </div>
-
-            {/* BOTTOM PROMPT INPUT BAR */}
-            <div className="pt-4 sticky bottom-0 bg-white">
-              <div className="border border-slate-200 rounded-2xl p-3.5 bg-white shadow-2xs focus-within:border-slate-400 focus-within:ring-1 focus-within:ring-slate-400/20 transition-all">
-                <textarea
-                  value={inputMessage}
-                  onChange={(e) => setInputMessage(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (
-                      (e.key === "Enter" && (e.metaKey || e.ctrlKey)) ||
-                      (e.key === "Enter" && !e.shiftKey)
-                    ) {
-                      e.preventDefault()
-                      handleSendMessage()
-                    }
-                  }}
-                  placeholder="Type a message or instruction to test your agent live..."
-                  className="w-full text-xs text-slate-800 placeholder:text-slate-500 outline-none resize-none bg-transparent min-h-[44px] leading-relaxed"
-                  disabled={isExecuting}
-                />
-
-                <div className="flex items-center justify-between pt-2 border-t border-slate-100 mt-1">
-                  {/* Left: + button and Tools dropdown */}
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => showToast("Add attachment or dataset")}
-                      className="w-7 h-7 rounded-lg border border-slate-200 hover:bg-slate-50 flex items-center justify-center text-slate-500 hover:text-slate-800 transition-colors shadow-2xs"
-                      title="Add attachment"
-                    >
-                      <Plus className="w-3.5 h-3.5" />
-                    </button>
-
-                    <button
-                      onClick={() => setIsModelModalOpen(true)}
-                      className="px-2.5 py-1 rounded-lg border border-slate-200 hover:bg-slate-50 text-xs font-medium text-slate-700 flex items-center gap-1.5 transition-colors shadow-2xs"
-                    >
-                      <Wrench className="w-3.5 h-3.5 text-slate-500" />
-                      <span>Tools</span>
-                      <ChevronDown className="w-3 h-3 text-slate-500" />
-                    </button>
-                  </div>
-
-                  {/* Right: Keyboard shortcut hint + Send button */}
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-[11px] text-slate-500 font-medium font-mono">
-                      Press ⌘↵ to run
-                    </span>
-
-                    <button
-                      onClick={() => handleSendMessage()}
-                      disabled={!inputMessage.trim() || isExecuting}
-                      className={`px-4 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all shadow-2xs cursor-pointer ${
-                        inputMessage.trim() && !isExecuting
-                          ? "bg-[#be4c3f] hover:bg-[#a83e32] text-white"
-                          : "bg-[#be4c3f]/70 text-white/90"
-                      }`}
-                    >
-                      <span>Send</span>
-                      <Play className="w-3 h-3 fill-current" />
-                    </button>
                   </div>
                 </div>
               </div>
