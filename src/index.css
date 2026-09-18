@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #fdf2f0;
+  --color-brand-100: #fceceb;
+  --color-brand-200: #f5d0cb;
+  --color-brand-300: #ea9b92;
+  --color-brand-400: #d86c5f;
+  --color-brand-500: #be4c3f;
+  --color-brand-600: #a83e32;
+  --color-brand-700: #8b3228;
+  --color-brand-800: #712820;
+  --color-brand-900: #5a1f18;
+
+  --color-primary: #be4c3f;
+  --color-primary-hover: #a83e32;
+  --color-primary-light: #fdf2f0;
+  --color-primary-border: #f5d0cb;
+
+  --color-surface-50: #FAFAFB;
+  --color-surface-100: #F4F4F6;
+  --color-surface-200: #E8E8EC;
+  --color-surface-800: #121218;
+  --color-surface-900: #0A0A0F;
+
+  --font-sans: 'Raleway', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html {
+  font-size: 15.4px;
+}
+
+body {
+  background-color: #FAFAFB;
+  color: #0f172a;
+  font-family: 'Raleway', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.01em;
+}
+
+/* Custom subtle scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

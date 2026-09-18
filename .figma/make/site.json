@@ -1,0 +1,10 @@
+{
+  "description": "Delivers an exact replica of a 4-screen UI design ensuring pixel-perfect accuracy for designers and developers seeking flawless interface implementation.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
