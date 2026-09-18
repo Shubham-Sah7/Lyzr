@@ -29,7 +29,7 @@
 }
 
 html {
-  font-size: 15.4px;
+  font-size: 16px;
 }
 
 body {
@@ -38,6 +38,33 @@ body {
   font-family: 'Raleway', sans-serif;
   -webkit-font-smoothing: antialiased;
   letter-spacing: -0.01em;
+}
+
+/* Clear Typographic Hierarchy */
+.text-heading-hero {
+  font-size: 1.375rem; /* 22px (+2px from 20px) */
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.text-heading-section {
+  font-size: 0.875rem; /* 14px (+2px from 12px) */
+  line-height: 1.35;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.text-heading-card {
+  font-size: 0.875rem; /* 14px (+2px from 12px) */
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.text-subhead {
+  font-size: 0.8125rem; /* 13px */
+  line-height: 1.4;
+  font-weight: 600;
 }
 
 /* Custom subtle scrollbars */

@@ -223,15 +223,15 @@ export default function StudioMainView({
                 onBlur={() => setIsEditingTitle(false)}
                 onKeyDown={(e) => e.key === "Enter" && setIsEditingTitle(false)}
                 autoFocus
-                className="font-semibold text-slate-900 text-sm px-1 py-0.5 border border-[#be4c3f] rounded outline-none"
+                className="font-bold text-slate-900 text-base px-1 py-0.5 border border-[#be4c3f] rounded outline-none"
               />
             ) : (
               <button
                 onClick={() => setIsEditingTitle(true)}
-                className="flex items-center gap-1.5 font-semibold text-slate-900 text-sm hover:text-black py-0.5 px-1 rounded hover:bg-slate-100 transition-colors group"
+                className="flex items-center gap-1.5 font-bold text-slate-900 text-base hover:text-black py-0.5 px-1 rounded hover:bg-slate-100 transition-colors group"
               >
                 <span>{agentTitle}</span>
-                <ChevronDown className="w-3.5 h-3.5 text-slate-500 group-hover:text-slate-800" />
+                <ChevronDown className="w-4 h-4 text-slate-500 group-hover:text-slate-800" />
               </button>
             )}
           </div>
@@ -317,17 +317,17 @@ export default function StudioMainView({
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between">
-                <span className="font-bold text-slate-900 text-xs truncate">
+                <span className="font-bold text-slate-900 text-sm truncate">
                   {agentTitle}
                 </span>
                 <button
                   onClick={() => setIsEditingTitle(true)}
                   className="p-1 text-slate-500 hover:text-slate-800 rounded transition-colors"
                 >
-                  <Pencil className="w-3 h-3" />
+                  <Pencil className="w-3.5 h-3.5" />
                 </button>
               </div>
-              <p className="text-[11px] text-slate-600 leading-snug mt-0.5">
+              <p className="text-xs text-slate-500 leading-snug mt-0.5">
                 {agentPurpose}
               </p>
             </div>
@@ -384,9 +384,9 @@ export default function StudioMainView({
 
           {/* GOAL Section */}
           <div className="space-y-1.5">
-            <div className="flex items-center gap-1 text-xs font-bold text-slate-900">
+            <div className="flex items-center gap-1.5 text-sm font-bold text-slate-900">
               <span>Goal</span>
-              <HelpCircle className="w-3 h-3 text-slate-500" />
+              <HelpCircle className="w-3.5 h-3.5 text-slate-400" />
             </div>
             <div className="relative border border-slate-200 rounded-xl overflow-hidden bg-white focus-within:border-[#be4c3f] transition-all">
               <textarea
@@ -404,11 +404,11 @@ export default function StudioMainView({
 
           {/* TOOLS Section */}
           <div className="space-y-1.5">
-            <div className="flex items-center gap-1 text-xs font-bold text-slate-900">
+            <div className="flex items-center gap-1.5 text-sm font-bold text-slate-900">
               <span>Tools</span>
-              <HelpCircle className="w-3 h-3 text-slate-500" />
+              <HelpCircle className="w-3.5 h-3.5 text-slate-400" />
             </div>
-            <p className="text-[11px] text-slate-600 leading-tight">
+            <p className="text-xs text-slate-500 leading-tight">
               Type '/' to mention tools in your instructions.
             </p>
             <div className="p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs text-slate-600 flex items-start gap-2">
@@ -425,9 +425,9 @@ export default function StudioMainView({
 
           {/* RULES Section */}
           <div className="space-y-2">
-            <div className="flex items-center gap-1 text-xs font-bold text-slate-900">
+            <div className="flex items-center gap-1.5 text-sm font-bold text-slate-900">
               <span>Rules</span>
-              <HelpCircle className="w-3 h-3 text-slate-500" />
+              <HelpCircle className="w-3.5 h-3.5 text-slate-400" />
             </div>
             <div className="border border-slate-200 rounded-xl p-2.5 bg-white">
               <input
@@ -490,10 +490,10 @@ export default function StudioMainView({
               />
 
               {/* Main Heading & Subheading */}
-              <h1 className="text-xl font-bold text-slate-900 tracking-tight">
+              <h1 className="text-[22px] font-bold text-slate-900 tracking-tight">
                 Create your agent
               </h1>
-              <p className="text-xs text-slate-500 max-w-[460px] leading-relaxed mt-1">
+              <p className="text-sm text-slate-600 max-w-[480px] leading-relaxed mt-1.5">
                 Define what your agent should do, connect the right tools, and
                 test it — all in one place.
               </p>
@@ -506,10 +506,10 @@ export default function StudioMainView({
                 <div className="w-6 h-6 rounded-lg bg-[#fdf2f0] flex items-center justify-center text-[#be4c3f]">
                   <FileText className="w-3.5 h-3.5 text-[#be4c3f]" />
                 </div>
-                <h3 className="font-bold text-slate-900 text-xs">
+                <h3 className="font-bold text-slate-900 text-sm">
                   1. Describe your agent
                 </h3>
-                <p className="text-[11px] text-slate-500 leading-snug">
+                <p className="text-xs text-slate-600 leading-snug">
                   Tell us the goal, instructions, and rules for your agent.
                 </p>
               </div>
@@ -519,10 +519,10 @@ export default function StudioMainView({
                 <div className="w-6 h-6 rounded-lg bg-amber-50 flex items-center justify-center text-amber-600">
                   <Settings className="w-3.5 h-3.5 text-amber-600" />
                 </div>
-                <h3 className="font-bold text-slate-900 text-xs">
+                <h3 className="font-bold text-slate-900 text-sm">
                   2. Add tools & knowledge
                 </h3>
-                <p className="text-[11px] text-slate-500 leading-snug">
+                <p className="text-xs text-slate-600 leading-snug">
                   Connect the tools, data sources, and integrations your agent
                   can use.
                 </p>
@@ -533,10 +533,10 @@ export default function StudioMainView({
                 <div className="w-6 h-6 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600">
                   <Play className="w-3.5 h-3.5 text-emerald-600" />
                 </div>
-                <h3 className="font-bold text-slate-900 text-xs">
+                <h3 className="font-bold text-slate-900 text-sm">
                   3. Test and iterate
                 </h3>
-                <p className="text-[11px] text-slate-500 leading-snug">
+                <p className="text-xs text-slate-600 leading-snug">
                   Run test tasks, refine the behavior, and publish when ready.
                 </p>
               </div>
@@ -549,10 +549,10 @@ export default function StudioMainView({
                 <div className="flex items-start gap-3">
                   <BookOpen className="w-4 h-4 text-slate-500 mt-0.5 shrink-0 group-hover:text-slate-800" />
                   <div>
-                    <h4 className="font-bold text-slate-900 text-xs">
+                    <h4 className="font-bold text-slate-900 text-sm">
                       Add a guide for how to use this agent
                     </h4>
-                    <p className="text-[11px] text-slate-600 leading-snug mt-0.5">
+                    <p className="text-xs text-slate-600 leading-snug mt-0.5">
                       Shown to users before they start a task — helps them
                       understand what this agent does and how to use it.
                     </p>
@@ -566,10 +566,10 @@ export default function StudioMainView({
                 <div className="flex items-start gap-3">
                   <PieChart className="w-4 h-4 text-slate-500 mt-0.5 shrink-0 group-hover:text-slate-800" />
                   <div>
-                    <h4 className="font-bold text-slate-900 text-xs">
+                    <h4 className="font-bold text-slate-900 text-sm">
                       Test runs will use credits
                     </h4>
-                    <p className="text-[11px] text-slate-600 leading-snug mt-0.5">
+                    <p className="text-xs text-slate-600 leading-snug mt-0.5">
                       Credit usage for individual test runs won't be visible at
                       the agent level as runs performed here are not stored. You
                       can view overall agent credit usage in Plan & Billing.{" "}
@@ -589,12 +589,12 @@ export default function StudioMainView({
                     <Monitor className="w-4 h-4 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-white text-xs">
+                    <h4 className="font-bold text-white text-sm">
                       {creditsRemaining === 0
                         ? "You've run out of credits"
                         : `${creditsRemaining} credits available`}
                     </h4>
-                    <p className="text-[11px] text-white/85">
+                    <p className="text-xs text-white/90 mt-0.5">
                       {creditsRemaining === 0
                         ? "0 / 0 credits remaining"
                         : "Ready for test runs"}
@@ -679,12 +679,12 @@ export default function StudioMainView({
         <div className="w-[320px] shrink-0 border-l border-slate-200 bg-white flex flex-col overflow-y-auto p-4 space-y-3.5">
           {/* Top Row: Configuration Header & History Action */}
           <div className="flex items-center justify-between pb-0.5">
-            <span className="text-xs font-bold text-slate-900 tracking-tight">
+            <span className="text-sm font-bold text-slate-900 tracking-tight">
               Configuration
             </span>
             <button
               onClick={() => showToast("Viewing previous runs history")}
-              className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-600 hover:text-[#be4c3f] transition-colors py-0.5 group"
+              className="flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-[#be4c3f] transition-colors py-0.5 group"
             >
               <Clock className="w-3.5 h-3.5 text-slate-500 group-hover:text-[#be4c3f]" />
               <span>History</span>
@@ -695,7 +695,7 @@ export default function StudioMainView({
           {/* 1. MODEL — at the top, with current model name, provider, dropdown and model settings controls */}
           <div className="border border-slate-200 rounded-xl bg-white p-3 space-y-2.5 shadow-2xs">
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+              <span className="text-xs font-bold text-slate-600 uppercase tracking-wider">
                 Model
               </span>
               <button
@@ -721,10 +721,10 @@ export default function StudioMainView({
                   <Box className="w-3.5 h-3.5 text-white" />
                 </div>
                 <div className="min-w-0">
-                  <div className="text-xs font-semibold text-slate-900 truncate group-hover:text-[#be4c3f] transition-colors">
+                  <div className="text-sm font-semibold text-slate-900 truncate group-hover:text-[#be4c3f] transition-colors">
                     {selectedModel}
                   </div>
-                  <div className="text-[10px] text-slate-500 font-medium">
+                  <div className="text-xs text-slate-500 font-medium">
                     Provider:{" "}
                     <span className="text-slate-700 font-semibold">
                       {getModelProvider(selectedModel)}
@@ -1151,11 +1151,11 @@ export default function StudioMainView({
           {/* 6. AUTOMATION — add + Schedule and + Trigger */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900">
-                <Zap className="w-3.5 h-3.5 text-slate-500" />
+              <div className="flex items-center gap-1.5 text-sm font-bold text-slate-900">
+                <Zap className="w-4 h-4 text-slate-600" />
                 <span>Automation</span>
               </div>
-              <span className="text-[10px] text-slate-500 font-medium">
+              <span className="text-xs text-slate-500 font-medium">
                 {schedules.length + triggers.length} active
               </span>
             </div>
@@ -1263,8 +1263,8 @@ export default function StudioMainView({
           {/* 7. FEATURES — compact feature cards such as Memory, Data Query and Responsible AI */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-slate-900">Features</span>
-              <span className="text-[10px] text-slate-500 font-semibold">
+              <span className="text-sm font-bold text-slate-900">Features</span>
+              <span className="text-xs text-slate-500 font-semibold">
                 3 active
               </span>
             </div>
@@ -1277,10 +1277,10 @@ export default function StudioMainView({
                     <Brain className="w-3.5 h-3.5 text-white" />
                   </div>
                   <div className="min-w-0">
-                    <h4 className="text-xs font-bold text-slate-900 leading-tight">
+                    <h4 className="text-sm font-bold text-slate-900 leading-tight">
                       Memory
                     </h4>
-                    <p className="text-[10px] text-slate-500 leading-tight truncate">
+                    <p className="text-xs text-slate-500 leading-tight truncate mt-0.5">
                       Persistent context across sessions
                     </p>
                   </div>
@@ -1316,10 +1316,10 @@ export default function StudioMainView({
                     <Database className="w-3.5 h-3.5 text-blue-600" />
                   </div>
                   <div className="min-w-0">
-                    <h4 className="text-xs font-bold text-slate-900 leading-tight">
+                    <h4 className="text-sm font-bold text-slate-900 leading-tight">
                       Data Query
                     </h4>
-                    <p className="text-[10px] text-slate-500 leading-tight truncate">
+                    <p className="text-xs text-slate-500 leading-tight truncate mt-0.5">
                       Direct SQL & semantic vector retrieval
                     </p>
                   </div>
@@ -1355,10 +1355,10 @@ export default function StudioMainView({
                     <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
                   </div>
                   <div className="min-w-0">
-                    <h4 className="text-xs font-bold text-slate-900 leading-tight">
+                    <h4 className="text-sm font-bold text-slate-900 leading-tight">
                       Responsible AI
                     </h4>
-                    <p className="text-[10px] text-slate-500 leading-tight truncate">
+                    <p className="text-xs text-slate-500 leading-tight truncate mt-0.5">
                       Guardrails, toxicity filters & PII masking
                     </p>
                   </div>
@@ -1392,11 +1392,11 @@ export default function StudioMainView({
           {/* 8. PRESERVED SECONDARY SECTIONS: Credit Warning Card, How can I help?, Pro Tip */}
           {/* Credit Warning Card - Solid Fill */}
           <div className="p-3.5 rounded-xl bg-[#be4c3f] text-white space-y-2.5 shadow-xs">
-            <div className="flex items-center gap-1.5 text-xs font-bold text-white">
+            <div className="flex items-center gap-1.5 text-sm font-bold text-white">
               <AlertCircle className="w-4 h-4 text-white" />
               <span>You have no credits left</span>
             </div>
-            <p className="text-[11px] text-white/90 leading-snug">
+            <p className="text-xs text-white/90 leading-snug">
               You've used up all your credits. Upgrade or refill to continue
               running agent tasks.
             </p>
@@ -1414,8 +1414,8 @@ export default function StudioMainView({
 
           {/* How can I help? Card */}
           <div className="p-3 rounded-xl border border-slate-200 bg-white space-y-2 shadow-2xs">
-            <div className="flex items-center gap-2 text-xs font-bold text-slate-900">
-              <BookOpen className="w-3.5 h-3.5 text-[#be4c3f]" />
+            <div className="flex items-center gap-2 text-sm font-bold text-slate-900">
+              <BookOpen className="w-4 h-4 text-[#be4c3f]" />
               <span>How can I help?</span>
             </div>
 
@@ -1455,11 +1455,11 @@ export default function StudioMainView({
               >
                 <X className="w-3.5 h-3.5" />
               </button>
-              <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900">
-                <Lightbulb className="w-3.5 h-3.5 text-amber-500" />
+              <div className="flex items-center gap-1.5 text-sm font-bold text-slate-900">
+                <Lightbulb className="w-4 h-4 text-amber-500" />
                 <span>Pro tip</span>
               </div>
-              <p className="text-[11px] text-slate-600 leading-relaxed pr-3 font-normal">
+              <p className="text-xs text-slate-600 leading-relaxed pr-3 font-normal">
                 A well-defined goal and clear instructions help your agent
                 perform better.
               </p>
