@@ -88,70 +88,12 @@ function AgentAvatarIcon({
   )
 }
 
-// Tool Icons
-function GmailIcon({ className = "w-4 h-4" }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 48 48">
-      <path
-        fill="#4caf50"
-        d="M45,16.2l-5,2.75l-5,4.75L35,40h7c1.657,0,3-1.343,3-3V16.2z"
-      />
-      <path
-        fill="#1e88e5"
-        d="M3,16.2l5,2.75l5,4.75L13,40H6c-1.657,0-3-1.343-3-3V16.2z"
-      />
-      <polygon
-        fill="#e53935"
-        points="35,11.2 24,19.45 13,11.2 12,17 24,26 36,17"
-      />
-      <path
-        fill="#c62828"
-        d="M3,12.298V16.2l10,7.5V11.2L8.6,7.8C7.1,6.6,4.9,7.4,4.2,9.2L3,12.298z"
-      />
-      <path
-        fill="#fbc02d"
-        d="M45,12.298V16.2l-10,7.5V11.2l4.4-3.4c1.5-1.2,3.7-0.4,4.4,1.4L45,12.298z"
-      />
-    </svg>
-  )
-}
-
-function SlackIcon({ className = "w-4 h-4" }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24">
-      <path
-        fill="#E01E5A"
-        d="M5.04 14.5a1.8 1.8 0 1 0 1.8 1.8v-1.8H5.04zm0-2.34h4.14v4.14a1.8 1.8 0 1 1-4.14 0V12.16z"
-      />
-      <path
-        fill="#36C5F0"
-        d="M9.5 5.04a1.8 1.8 0 1 0-1.8 1.8h1.8V5.04zm2.34 0v4.14H7.7a1.8 1.8 0 1 1 0-4.14h4.14z"
-      />
-      <path
-        fill="#2EB67D"
-        d="M18.96 9.5a1.8 1.8 0 1 0-1.8-1.8v1.8h1.8zm0 2.34H14.82V7.7a1.8 1.8 0 1 1 4.14 0v4.14z"
-      />
-      <path
-        fill="#ECB22E"
-        d="M14.5 18.96a1.8 1.8 0 1 0 1.8-1.8h-1.8v1.8zm-2.34 0v-4.14h4.14a1.8 1.8 0 1 1 0 4.14h-4.14z"
-      />
-    </svg>
-  )
-}
-
-function SheetsIcon({ className = "w-4 h-4" }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none">
-      <rect x="3" y="3" width="18" height="18" rx="3.5" fill="#0F9D58" />
-      <path
-        d="M7 10.5h10M7 14.5h10M11 6.5v11"
-        stroke="white"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  )
-}
+import {
+  GmailIcon,
+  SlackIcon,
+  SheetsIcon,
+  GlobeToolIcon,
+} from "../components/ToolIcons"
 
 export default function Screen4({ onNavigateTab, onHomeClick }: Screen4Props) {
   // Navigation & mode
@@ -875,42 +817,46 @@ export default function Screen4({ onNavigateTab, onHomeClick }: Screen4Props) {
             </div>
 
             {/* Available Tools */}
-            <div className="space-y-2.5">
-              <h4 className="text-sm font-semibold text-slate-700">
+            <div className="space-y-3">
+              <h4 className="text-[17px] font-semibold text-slate-800 tracking-tight">
                 Available Tools
               </h4>
               <div className="flex items-center gap-2">
                 <div
-                  className="w-8 h-8 rounded-lg border border-slate-200 bg-white flex items-center justify-center p-1.5 shadow-2xs hover:border-slate-300 transition-colors"
+                  onClick={() => setIsModelModalOpen(true)}
+                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl border border-slate-200 bg-white flex items-center justify-center p-2 shadow-2xs hover:border-slate-300 hover:shadow-xs transition-all cursor-pointer shrink-0"
                   title="Gmail Integration"
                 >
-                  <GmailIcon className="w-4 h-4" />
-                </div>
-
-                <div
-                  className="w-8 h-8 rounded-lg border border-slate-200 bg-white flex items-center justify-center p-1.5 shadow-2xs hover:border-slate-300 transition-colors"
-                  title="Slack Workspace"
-                >
-                  <SlackIcon className="w-4 h-4" />
-                </div>
-
-                <div
-                  className="w-8 h-8 rounded-lg border border-slate-200 bg-white flex items-center justify-center p-1.5 shadow-2xs hover:border-slate-300 transition-colors"
-                  title="Google Sheets"
-                >
-                  <SheetsIcon className="w-4 h-4" />
-                </div>
-
-                <div
-                  className="w-8 h-8 rounded-lg border border-slate-200 bg-white flex items-center justify-center p-1.5 shadow-2xs hover:border-slate-300 transition-colors text-slate-600"
-                  title="Web Search"
-                >
-                  <Globe className="w-4 h-4 text-slate-600" />
+                  <GmailIcon className="w-5 h-5 shrink-0" />
                 </div>
 
                 <div
                   onClick={() => setIsModelModalOpen(true)}
-                  className="w-8 h-8 rounded-lg border border-slate-200 bg-slate-50 flex items-center justify-center text-xs font-semibold text-slate-600 shadow-2xs hover:bg-slate-100 cursor-pointer transition-colors"
+                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl border border-slate-200 bg-white flex items-center justify-center p-2 shadow-2xs hover:border-slate-300 hover:shadow-xs transition-all cursor-pointer shrink-0"
+                  title="Slack Workspace"
+                >
+                  <SlackIcon className="w-5 h-5 shrink-0" />
+                </div>
+
+                <div
+                  onClick={() => setIsModelModalOpen(true)}
+                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl border border-slate-200 bg-white flex items-center justify-center p-2 shadow-2xs hover:border-slate-300 hover:shadow-xs transition-all cursor-pointer shrink-0"
+                  title="Google Sheets"
+                >
+                  <SheetsIcon className="w-5 h-5 shrink-0" />
+                </div>
+
+                <div
+                  onClick={() => setIsModelModalOpen(true)}
+                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl border border-slate-200 bg-white flex items-center justify-center p-2 shadow-2xs hover:border-slate-300 hover:shadow-xs transition-all cursor-pointer text-slate-700 shrink-0"
+                  title="Web Search"
+                >
+                  <GlobeToolIcon className="w-5 h-5 text-slate-700 shrink-0" />
+                </div>
+
+                <div
+                  onClick={() => setIsModelModalOpen(true)}
+                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl border border-slate-200 bg-white flex items-center justify-center text-sm font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 hover:border-slate-300 hover:shadow-xs cursor-pointer transition-all shrink-0"
                   title="3 more tools configured"
                 >
                   +3

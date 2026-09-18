@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import Header from "../components/Header"
 import TemplateCards from "../components/TemplateCards"
 import InventChatPanel from "../components/InventChatPanel"
+import { renderToolIcon } from "../components/ToolIcons"
 import {
   Bot,
   Wand2,
@@ -818,7 +819,9 @@ export default function Screen2({
                       className="p-3 rounded-xl border border-slate-200 bg-white flex items-center justify-between shadow-2xs hover:border-slate-300 transition-all"
                     >
                       <div className="flex items-center gap-3">
-                        <span className="text-xl">{t.icon}</span>
+                        <div className="w-8 h-8 rounded-lg border border-slate-200 bg-white flex items-center justify-center shadow-2xs shrink-0">
+                          {renderToolIcon(t.name, "w-4 h-4")}
+                        </div>
                         <div>
                           <p className="font-bold text-slate-900 text-xs">
                             {t.name}
@@ -1713,8 +1716,10 @@ export default function Screen2({
                         className="flex items-center justify-between p-2 rounded-lg bg-white border border-slate-200 text-xs"
                       >
                         <div className="min-w-0 pr-2">
-                          <div className="text-slate-800 font-medium truncate flex items-center gap-1.5">
-                            <span>{tool.icon}</span>
+                          <div className="text-slate-800 font-medium truncate flex items-center gap-2">
+                            <span className="shrink-0 flex items-center justify-center">
+                              {renderToolIcon(tool.name, "w-3.5 h-3.5")}
+                            </span>
                             <span>{tool.name}</span>
                           </div>
                           <div className="text-[10px] text-slate-600 truncate">
